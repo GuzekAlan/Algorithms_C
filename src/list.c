@@ -2,6 +2,17 @@
 #include <stdlib.h>
 #include "list.h"
 
+
+int compare(void *a, void *b, size_t size){
+    byte *x = (byte*)a;
+    byte *y = (byte*)b;
+    for(int i = 0; i < size; i++){
+        if(*(x+i) != *(y+i)) return 0;
+    }
+    return 1;
+}
+
+
 node *insert_begin(node *head, void *val, size_t size){
     node *temp = malloc(sizeof(node));
     if(!temp){
@@ -21,7 +32,11 @@ node *int_insert(node *head, int val){
 }
 
 
-
+node *delete_element(node *head, void *val, size_t size){
+    if(!head) return NULL;
+    if(compare(head->value, val, size)) return head;
+    return delete_element(head->next, val, size);
+}
 
 node *delete_all(node *head){
     node *next;

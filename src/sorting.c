@@ -2,14 +2,14 @@
 
 
 void swap(void *a, void *b, size_t size){        
-     byte *x = (byte*)a;
-     byte *y = (byte*)b;
-     byte temp;
-     for(int i = 0; i < size; i++){
+    byte *x = (byte*)a;
+    byte *y = (byte*)b;
+    byte temp;
+    for(int i = 0; i < size; i++){
         temp = *(x+i);
         *(x+i) = *(y+i);
         *(y+i) = temp;
-     }
+    }
 }
 
 void *increment(void *ptr, size_t nbytes){
