@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "src/sorting.h"
+#include "src/list.h"
 
 #define N 4
 
@@ -14,6 +15,7 @@ int c_comp(const void *a, const void *b){
 
 int main(void){
 
+    //  SORTING
     int arr[] = {9, 6, 2, 1};
     char arr2[] = {'j', 'p', '2', 'g'};
 
@@ -28,6 +30,12 @@ int main(void){
         printf("%c\t", arr2[i]);
     }
     printf("\n");
+
+    // LIST
+    node *head = int_insert(NULL, 7);
+    head = int_insert(head, 213);
+    head = delete_all(head);
+
     
     return 0;
 }
