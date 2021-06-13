@@ -5,7 +5,7 @@
 
 typedef struct tnode{
     size_t size;
-    enum type{Float, Char, Int};
+    // enum type{Float, Char, Int};
     struct tnode *next;
     void *value;
 }node;
