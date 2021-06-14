@@ -97,6 +97,4 @@ bst *delete_bst(bst *root);
 int _print_bst(bst *tree, int is_left, int offset, int depth, char s[20][255]);
 void print_bst(bst *tree);
 
-
-
 #endif
