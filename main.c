@@ -3,6 +3,7 @@
 #include "sorting.h"
 #include "list.h"
 #include "bst.h"
+#include "print_tree.h"
 
 // Program for testing library
 
@@ -17,7 +18,7 @@ int c_comp(const void *a, const void *b){
     return (int)(*(char*)a - *(char*)b);
 }
 
-int main(void){
+int main(int argc, char **argv){
 
     //  SORTING
     int arr[] = {9, 6, 2, 1};
@@ -46,10 +47,12 @@ int main(void){
     // BST
     int vals[] = {10, 3, 5, 4, 20, 25, 15, 12, 16, 23, 30};
     bst *tree = create_bst(vals, sizeof(vals)/sizeof(*vals));
-    print_bst(tree);
-    // rotate_left(&tree, search(tree, 5));     // rotation doesn't work
+    print_ascii_tree(tree);
+    bst *branch = search(tree,20);
+    rotate_left(&tree, branch);     // rotation doesn't work
+    print_ascii_tree(tree);
     delete_leaf(search(tree, 20));
-    print_bst(tree);
+    print_ascii_tree(tree);
     
     delete_bst(tree);
     

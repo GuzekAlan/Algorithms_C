@@ -92,7 +92,8 @@ bst *search(bst *root, int val){
         if(V(root) > val) root = L(root);
         else root = R(root);
     }
-    return root;
+    if(V(root) == val) return root;
+    else return NULL;
 }
 
 bst *minimum(bst *root){
@@ -133,28 +134,40 @@ bst *create_bst(int *values, size_t size){
     return root;
 }
 
-void rotate_left(bst **root, bst *x){       // Don't know how this work
+void rotate_left(bst **root, bst *x){
     bst *y = R(x);
-    R(x) = L(y);
-    if(L(y)) P(L(y)) = x;
-    P(y) = P(x);
-    if(!P(x)) *root = y;
-    else if(!IS_R(x)) L(P(x)) = y;
-    else R(P(x)) = y;
-    L(y) = x;
-    P(x) = y;
+    if(y){                  // check if x have right branch
+        R(x) = L(y);
+        if(L(y))            // check if y have left branch and if have then assaign x as new parent
+            P(L(y)) = x;
+        P(y) = P(x);
+        if(!P(x))           // if x was root then y will be new root
+            *root = y;
+        else if(!IS_R(x))   // if x was left child then y will be left child
+            L(P(x)) = y;
+        else 
+            R(P(x)) = y;    // if x was right child then y will be right child
+        L(y) = x;
+        P(x) = y; 
+    }
 }
 
 void rotate_right(bst **root, bst *x){
     bst *y = L(x);
-    L(x) = R(y);
-    if(R(y)) P(L(y)) = x;
-    P(y) = P(x);
-    if(!P(x)) *root = y;
-    else if(IS_R(x)) R(P(x)) = y;
-    else L(P(x)) = y;
-    P(y) = x;
-    P(x) = y; 
+    if(y){
+        L(x) = R(y);
+        if(R(y)) 
+            P(R(y)) = x;
+        P(y) = P(x);
+        if(!P(x)) 
+            *root = y;
+        else if(IS_R(x)) 
+            R(P(x)) = y;
+        else 
+            L(P(x)) = y;
+        R(y) = x;
+        P(x) = y; 
+    }
 }
 
 /**
