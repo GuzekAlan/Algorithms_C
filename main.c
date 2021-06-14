@@ -1,8 +1,10 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "src/sorting.h"
-#include "src/list.h"
-#include "src/bst.h"
+#include "sorting.h"
+#include "list.h"
+#include "bst.h"
+
+// Program for testing library
 
 #define N 4
 #define SEPARATOR (printf("--------------------------\n"))
@@ -43,16 +45,13 @@ int main(void){
     SEPARATOR;
     // BST
     int vals[] = {10, 3, 5, 4, 20, 25, 15, 12, 16, 23, 30};
-    bst *bst_root = create_bst(vals, sizeof(vals)/sizeof(*vals));
-    print_bst_inorder(bst_root);
-    bst *to_delete = search(bst_root, 5);
-    to_delete = delete_leaf(to_delete);
-    SEPARATOR;
-    print_bst_inorder(bst_root);
-    bst_root = delete_bst(bst_root);
-    SEPARATOR;
-
-
+    bst *tree = create_bst(vals, sizeof(vals)/sizeof(*vals));
+    print_bst(tree);
+    // rotate_left(&tree, search(tree, 5));     // rotation doesn't work
+    delete_leaf(search(tree, 20));
+    print_bst(tree);
+    
+    delete_bst(tree);
     
     return 0;
 }

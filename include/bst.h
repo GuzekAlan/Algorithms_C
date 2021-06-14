@@ -1,7 +1,7 @@
 #ifndef BST_H
 #define BST_H
 
-#define REL(a, b) ((a)>(b)?(1):(0)) // Macro for relations
+#define REL(a, b) (a)>(b) // Macro for relations
 
 // INTEGER BINARY SEARCH TREE
 
@@ -17,7 +17,7 @@ typedef struct bst_node{
 #define P(X) ((X)->parent)
 #define V(X) ((X)->value)
 
-#define IS_R(X) ((R(P((X)))==(X))?(1):(0))
+#define IS_R(X) (R(P((X)))==(X))
 
 // Leaf handling
 bst *create_leaf(bst *parent, int val);
@@ -37,7 +37,17 @@ bst *minimum(bst *root);
 bst *maximum(bst *root);
 bst *successor(bst *root);
 bst *predecessor(bst *root);
+void rotate_left(bst **root, bst *x);
+void rotate_right(bst **root, bst *x);
 bst *delete_bst(bst *root);
+
+/**
+ * Pretty printing using ASCII
+ * LINK: https://stackoverflow.com/questions/801740/c-how-to-draw-a-binary-tree-to-the-console
+*/
+int _print_bst(bst *tree, int is_left, int offset, int depth, char s[20][255]);
+void print_bst(bst *tree);
+
 
 
 #endif

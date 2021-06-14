@@ -28,7 +28,7 @@ node *insert_begin(node *head, void *val, size_t size){
 node *int_insert(node *head, int val){
     int *temp = malloc(sizeof(int));
     *temp = val;
-    head = insert_begin(head, temp, sizeof(int));
+    return  insert_begin(head, temp, sizeof(int));
 }
 
 
