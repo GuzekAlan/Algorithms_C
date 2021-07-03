@@ -25,7 +25,7 @@ void add_leaf(bst **root, bst *parent, int val){
 }
 
 void print_leaf(bst *leaf){         // Content of printf can be changed
-    printf("%d\n", V(leaf));
+    printf("%d\t", V(leaf));
 }
 
 void print_bst_inorder(bst *root){
@@ -39,7 +39,7 @@ void print_bst_inorder(bst *root){
 void print_bst_preorder(bst *root){
     if(root){
         print_leaf(root);
-        print_bst_inorder(L(root));
+        print_bst_preorder(L(root));
         print_bst_preorder(R(root));
     }
 }
@@ -170,6 +170,18 @@ void rotate_right(bst **root, bst *x){
     }
 }
 
+void print_bst(bst *tree){
+    char s[20][255];
+    for (int i = 0; i < 20; i++)
+        sprintf(s[i], "%80s", " ");
+
+    _print_bst(tree, 0, 0, 0, s);
+
+    for (int i = 0; i < 20; i++)
+        printf("%s\n", s[i]);
+}
+
+
 /**
  * Pretty printing using ASCII
  * LINK: https://stackoverflow.com/questions/801740/c-how-to-draw-a-binary-tree-to-the-console
@@ -226,15 +238,4 @@ int _print_bst(bst *tree, int is_left, int offset, int depth, char s[20][255]){
 #endif
 
     return left + width + right;
-}
-
-void print_bst(bst *tree){
-    char s[20][255];
-    for (int i = 0; i < 20; i++)
-        sprintf(s[i], "%80s", " ");
-
-    _print_bst(tree, 0, 0, 0, s);
-
-    for (int i = 0; i < 20; i++)
-        printf("%s\n", s[i]);
 }
